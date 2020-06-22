@@ -3,7 +3,8 @@ class CreateProjects < ActiveRecord::Migration[5.0]
     create_table :projects do |t|
       t.string :name
       t.integer :age
-
+      t.email :email
+      t.integer :phone
       t.timestamps
     end
   end

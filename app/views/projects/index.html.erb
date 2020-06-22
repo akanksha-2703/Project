@@ -1,7 +1,29 @@
 <p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .navbar 
+  {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+    box-shadow: 0 8px 6px -6px #999;
+  }
+  .dropdown-menu 
+  {
+    width: 100px !important;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-dark bg-dark">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/patients">
+        <img src="https://d2i6vk5bmh3r0a.cloudfront.net/images_2_0/assets/svg/invis_logo_black-f6c4c07a1c4fd883eaa7700fa407c0b1eee748ec5e39566d4526419a4d72a89a.svg" style="width: 150px">
+        </a>
 
-<h1>Doctor</h1>
-
+      </div>
 <table>
   <thead>
     <tr>
@@ -16,7 +38,6 @@
       <tr>
         <td><%= project.name %></td>
         <td><%= project.age %></td>
-        <td><%= link_to 'Show', project %></td>
         <td><%= link_to 'Edit', edit_project_path(project) %></td>
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -26,5 +47,5 @@
 
 <br>
 
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'Add New Patient', new_project_path %>
 <%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
