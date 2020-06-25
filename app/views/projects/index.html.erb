@@ -1,34 +1,16 @@
 <p id="notice"><%= notice %></p>
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-  .navbar 
-  {
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
-    box-shadow: 0 8px 6px -6px #999;
-  }
-  .dropdown-menu 
-  {
-    width: 100px !important;
-    text-align: center;
-  }
-</style>
-</head>
-<body>
   <nav class="navbar navbar-dark bg-dark">
       <div class="navbar-header">
         <a class="navbar-brand" href="/patients">
         <img src="https://d2i6vk5bmh3r0a.cloudfront.net/images_2_0/assets/svg/invis_logo_black-f6c4c07a1c4fd883eaa7700fa407c0b1eee748ec5e39566d4526419a4d72a89a.svg" style="width: 150px">
         </a>
-
       </div>
+      </nav>
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Age</th>
+      <th> <%= sort_link @search, :name, "Name"%> </th>
+      <th> <%= sort_link @search, :age, "age"%></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -42,10 +24,17 @@
         <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <%= link_to 'New patient', new_project_path %>
+  <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
 
-<%= link_to 'Add New Patient', new_project_path %>
-<%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>
+  <%= search_form_for @search do |f| %>
+    <%= f.text_field :name_cont, class: 'form',placeholder: "Name/details/email/address" %></br>
+    <%= link_to "Clear", request.path, class: "btn btn-default" %>
+    <%= f.submit class: 'btn btn-primary', style: "margin-left : 3px"%>
+    <% end %>
+
+    <%= will_paginate @projects %>
+

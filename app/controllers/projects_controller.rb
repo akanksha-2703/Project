@@ -4,10 +4,19 @@ class ProjectsController < ApplicationController
 
   # GET /projects
   # GET /projects.json
-  def index
-    @projects = Project.all
-  end
 
+  def index
+      @projects = Project.all 
+      @search = @projects.search(params[:q])
+
+    if @search.result 
+        @projects=@search.result.paginate(:page => params[:page],:per_page => 2)
+
+    else
+        @projects = Project.all.paginate(:page => params[:page],:per_page => 2)
+    end
+
+  end
   # GET /projects/1
   # GET /projects/1.json
   def show
@@ -16,6 +25,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @projects = Project.all
   end
 
   # GET /projects/1/edit
